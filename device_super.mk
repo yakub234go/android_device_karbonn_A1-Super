@@ -7,7 +7,7 @@ $(call inherit-product-if-exists, vendor/karbonn/super/super-vendor.mk)
 
 DEVICE_PACKAGE_OVERLAYS += device/karbonn/super/overlay
 
-LOCAL_PATH := device/karbonn/super
+LOCAL_PATH := device/karbonn/super/prebuilt
 ifeq ($(TARGET_PREBUILT_KERNEL),)
 	LOCAL_KERNEL := $(LOCAL_PATH)/kernel
 else
@@ -16,6 +16,16 @@ endif
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_KERNEL):kernel
+
+ADDITIONAL_DEFAULT_PROPERTIES += ro.secure=0 \
+ro.allow.mock.location=1 \
+persist.mtk.aee.aed=on \
+ro.debuggable=1 \
+ro.adb.secure=0 \
+persist.service.acm.enable=0 \
+persist.sys.usb.config=mass_storage \
+ro.mount.fs=UBIFS \
+ro.persist.partition.support=no
 
 $(call inherit-product, build/target/product/full.mk)
 

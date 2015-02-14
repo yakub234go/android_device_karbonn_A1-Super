@@ -1,0 +1,11 @@
+boot			/boot		mtd	defaults	defaults
+uboot			/uboot		mtd	defaults	defaults
+nvram			/nvram		mtd	defaults	defaults
+cache			/cache		mtd	defaults        defaults
+userdata		/data		ubifs	defaults        defaults
+#bytcfg			/data/bytcfg	ubifs	defaults        defaults
+misc			/misc		mtd	defaults	defaults
+recovery		/recovery	mtd	defaults	defaults
+system			/system		ubifs	defaults	defaults
+dev/block/mmcblk0p1	/storage/sdcard0	vfat	defaults	defaults
+dev/block/mmcblk0p2	/storage/sdcard1	ext4	defaults	defaults
