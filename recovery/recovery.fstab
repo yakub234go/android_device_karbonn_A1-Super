@@ -1,11 +1,20 @@
-boot			/boot		mtd	defaults	defaults
-uboot			/uboot		mtd	defaults	defaults
-nvram			/nvram		mtd	defaults	defaults
-cache			/cache		mtd	defaults        defaults
-userdata		/data		ubifs	defaults        defaults
-#bytcfg			/data/bytcfg	ubifs	defaults        defaults
-misc			/misc		mtd	defaults	defaults
-recovery		/recovery	mtd	defaults	defaults
-system			/system		ubifs	defaults	defaults
-dev/block/mmcblk0p1	/storage/sdcard0	vfat	defaults	defaults
-dev/block/mmcblk0p2	/storage/sdcard1	ext4	defaults	defaults
+# Android fstab file.
+# The filesystem that contains the filesystem checker binary (typically /system) cannot
+# specify MF_CHECK, and must come before any filesystems that do specify MF_CHECK
+
+#<src>          <mnt_point>        <type>       <mnt_flags and options>       <fs_mgr_flags>
+
+system		/system		ubifs	ro,noatime	wait
+cache		/cache		ubifs	noatime,nosuid,nodev,noauto_da_alloc	wait
+userdata	/data		ubifs	noatime,nosuid,nodev,noauto_da_alloc	wait,encryptable=footer
+
+# vold-managed volumes
+/dev/block/mmcblk0p1	/sdcard		vfat	defaults	defaults
+/dev/block/mmcblk0p2	/external_sd	auto	defaults	defaults
+
+boot		/boot		mtd	defaults	defaults
+nvram		/nvram		mtd	defaults	defaults
+recovery	/recovery	mtd	defaults	defaults
+uboot		/uboot		mtd	defaults	defaults
+misc		/misc		mtd	defaults	defaults
+logo		/logo		mtd	defaults	defaults

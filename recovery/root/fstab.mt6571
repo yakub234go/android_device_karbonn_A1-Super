@@ -3,18 +3,7 @@
 # The filesystem that contains the filesystem checker binary (typically /system) cannot
 # specify MF_CHECK, and must come before any filesystems that do specify MF_CHECK
 
-/mtd@android		/system		ubifs	ro,noatime,nosuid,nodev,noauto_da_alloc	wait,check
-/mtd@usrdata		/data		ubifs	noatime,nosuid,nodev,noauto_da_alloc	wait,check,encryptable=footer
-#/mtd@bytcfg		/data/bytcfg	ubifs	noatime,nosuid,nodev,noauto_da_alloc	wait,check
-#/emmc@protect_s		/protect_s	ext4	noatime,nosuid,nodev,noauto_da_alloc	wait,check
-/dev/block/mmcblk0p1	auto	vfat	defaults	voldmanaged=sdcard0:auto,noemulatedsd
-/dev/block/mmcblk0p2	auto	ext4	defaults	voldmanaged=sdcard1:auto
+/emmc@android	/system		ext4	ro,noatime	wait
+/emmc@cache	/cache		ext4	noatime,nosuid,nodev,noauto_da_alloc	wait
+/emmc@usrdata	/data		ext4	noatime,nosuid,nodev,noauto_da_alloc	wait,encryptable=footer
 
-/dev/mtd/mtd14		/cache		mtd	defaults	defaults
-/dev/mtd/mtd6		/boot		mtd	defaults	defaults
-/dev/mtd/mtd2		/nvram		mtd	defaults	defaults
-/dev/mtd/mtd7		/recovery	mtd	defaults	defaults
-/dev/mtd/mtd5		/uboot		mtd	defaults	defaults
-/dev/mtd/mtd9		/misc		mtd	defaults	defaults
-/dev/mtd/mtd3		/protect_f	rawfs	defaults	defaults
-/dev/mtd/mtd10		/logo		mtd	defaults	defaults
