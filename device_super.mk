@@ -15,8 +15,13 @@ else
 endif
 
 PRODUCT_COPY_FILES += \
-    $(LOCAL_KERNEL):kernel \
-    device/karbonn/super/twrp.fstab:recovery/root/etc/twrp.fstab
+    $(LOCAL_KERNEL):kernel #\
+#    device/karbonn/super/twrp.fstab:recovery/root/etc/twrp.fstab
+
+PRODUCT_COPY_FILES_OVERRIDES += \
+    root/fstab.goldfish \
+    root/init.goldfish.rc \
+    recovery/root/fstab.goldfish
 
 ADDITIONAL_DEFAULT_PROPERTIES += ro.secure=0 \
 ro.allow.mock.location=1 \
